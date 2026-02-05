@@ -1,10 +1,13 @@
-# Python Web OAuth ORM REST Starter App
+# Python Web ORM Starter App
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Flask](https://img.shields.io/badge/Flask-2.3-green)
 ![Render](https://img.shields.io/badge/Deploy-Render-purple)
 
-A simple Python Todo Web App to do some improvements on and be a starting point for your own simple web apps.
+A simple Python Todo Web App and a stripped-down version of
+https://github.com/UTCSheffield/python-web-oauth-orm-rest-starter. This version
+removes auth, admin, and API layers so you can concentrate on data classes and
+page routes.
 
 ---
 
@@ -33,15 +36,6 @@ A simple Python Todo Web App to do some improvements on and be a starting point 
 
 ---
 
-### Authentication (GitHub + Auth0)
-
-Authentication is the act of proving who you are, in this system we use external authentication systems so we aren't storing usernames & passwords (reducing the DPA responsiblilties ). There are still some so we provide a privacy policy.
-
-- GitHub OAuth (Flask-Dance) for local Windows development
-- Auth0 OAuth for Codespaces and Render production
-
----
-
 ### Render & Github Actions
 
 - Ready for [Render](https://render.com/)  deployment so you can publish and use the site online for free (there are some speed limitations)
@@ -55,7 +49,7 @@ Authentication is the act of proving who you are, in this system we use external
 ### Start from the Template
 
 1. Login to [github.com](https://github.com/)
-2. Go to the github repository [https://github.com/UTCSheffield/python-web-oauth-orm-rest-starter](https://github.com/UTCSheffield/python-web-oauth-orm-rest-starter)
+2. Go to the github repository [https://github.com/UTCSheffield/python-web-orm-starter](https://github.com/UTCSheffield/python-web-orm-starter)
 3. Click the green "Use this template" button at the top of the page
 4. Select "Create a new repository"
 5. Fill in your new repository details:
@@ -83,8 +77,8 @@ Authentication is the act of proving who you are, in this system we use external
 **Using Git Command Line:**
 
 ```bash
-git clone https://github.com/UTCSheffield/python-web-oauth-orm-rest-starter.git
-cd python-web-oauth-orm-rest-starter
+git clone https://github.com/UTCSheffield/python-web-orm-starter.git
+cd python-web-orm-starter
 ```
 
 ---
@@ -105,41 +99,6 @@ cp .env.example .env
 
 ---
 
-## Authentication Setup
-
-### How It Works
-
-This app automatically detects your environment and uses the appropriate authentication provider:
-
-- **Local Windows Machine** → GitHub OAuth (via Flask-Dance)
-- **GitHub Codespaces** → Auth0 OAuth
-- **Render Production** → Auth0 OAuth
-
-The app checks for Codespaces environment variables (`CODESPACES`, `CODESPACE_NAME`) and routes accordingly.
-
----
-
-### GitHub OAuth Setup (Local Development)
-
-For local Windows development with GitHub Desktop:
-
-1. **Create a GitHub OAuth App**
-   - Go to [GitHub Settings → Developer settings → OAuth Apps](https://github.com/settings/developers)
-   - Click "New OAuth App"
-   - Set "Application name": Flask Todo App
-   - Set "Homepage URL": `http://localhost:5000`
-   - Set "Application description": Local development
-   - Set "Authorization callback URL": `http://localhost:5000/login/github/authorized`
-
-2. **Get Your Credentials**
-   - Copy the "Client ID" and generate a "Client Secret"
-   - Add them to your `.env` file as `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`
-
-3. **Enable Insecure Transport for Local Dev**
-   - Set `OAUTHLIB_INSECURE_TRANSPORT=1` in `.env` (only for local development)
-
----
-
 ## Running the Application
 
 Start the Flask development server:
@@ -150,7 +109,7 @@ python3 -m flask run --host=localhost --port=5000
 
 The app will be available at [http://localhost:5000](http://localhost:5000)
 
-Try it, login and create a few tasks!
+Try it and create a few tasks!
 
 ---
 
@@ -165,36 +124,3 @@ The database file is stored in `/instance/todo.db`
 Hopefully Visual Code has promoted you to install the recommended extensions including the SQLite extension. and so todo.db should appear in the left hand side explorer view with a red icon.
 
 Have a look, can you see the tables and data?
-
----
-
-## Things we are ignoring
-
-- Persistent records in a database. The current database will be destroyed each time you push to render,  ( You can modify the code once it's on Render to move to PostgreSQL ).
-- Changing database structure SQLAlchemy Migrations. Currently we aren't handling changes to the database structure so you need to delete the local .db and start again (render wil do this anyway on a rebuild as mentioned above). They can be handled with Migrations
-- Minimal Autorisation all Authenticated users can do everything on the site.
-- Storing any user data in a database (other than an id from github or Auth0 ). To have users on this system to store any other PII refer to [https://flask-dance.readthedocs.io/en/latest/storages.html#sqlalchemy](https://flask-dance.readthedocs.io/en/latest/storages.html#sqlalchemy) and change the privacy statement.
-- Adding extra security [https://flask-security.readthedocs.io/en/stable/quickstart.html#basic-flask-sqlalchemy-application](https://flask-security.readthedocs.io/en/stable/quickstart.html#basic-flask-sqlalchemy-application)
-- Testing. There are no tests in this code, although Flask, SQL Alchemy and the other libraries used are thoroughly tested and are checked for security issues.
-
----
-
-## Your Development
-
-Try [ADDING_CATERGORIES.md](ADDING_CATERGORIES.md) to add a one-to-many relationship and Categories for the tasks.
-
-Then what could you make with the same ideas but different entities (things)? 
-
-Books and People could make a library etc ....
-
----
-
-
-## Deployment on Render
-
-See [RENDER_SETUP.md](RENDER_SETUP.md) for complete Render deployment instructions, including setup, configuration, environment variables, and continuous deployment.
-
-
-## Codespaces Setup
-
-See [CODESPACES_SETUP.md](CODESPACES_SETUP.md) for complete GitHub Codespaces setup instructions.
