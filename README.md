@@ -31,16 +31,8 @@ page routes.
 ###  [Object Relationship Mapper](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping)
 
 - ORMs build the database for you from your classes so you define what you want to store how it connects together and any extras calculations / functions you need .
-- Start with SQLite but you can move to proffesional systems like PostgreSQL or others when you are ready.
-- todo.py includes the Todo class that provdes all you need for the building of the database and all the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete).
-
----
-
-### Render & Github Actions
-
-- Ready for [Render](https://render.com/)  deployment so you can publish and use the site online for free (there are some speed limitations)
-- GitHub Actions CI/CD to build the site when you commit a working version
-- Can be upgraded to use a free PostgreSQL database server (but there are some other steps)
+- Start with SQLite but you can move to professional systems like PostgreSQL or others when you are ready.
+- todo.py includes the Todo class that provides all you need for the building of the database and all the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete).
 
 ---
 
@@ -74,27 +66,12 @@ page routes.
 
 ---
 
-**Using Git Command Line:**
-
-```bash
-git clone https://github.com/UTCSheffield/python-web-orm-starter.git
-cd python-web-orm-starter
-```
-
----
-
 ### Install Dependencies
 
-```bash
-python3 -m pip install -r requirements.txt
-```
-
----
-
-### Environment Configuration (.env)
+Open a Terminal
 
 ```bash
-cp .env.example .env
+py -m pip install -r requirements.txt # It may need python3 on some systems
 ```
 
 ---
@@ -104,7 +81,7 @@ cp .env.example .env
 Start the Flask development server:
 
 ```bash
-python3 -m flask run --host=localhost --port=5000
+py -m flask run # It may need python3 on your systen
 ```
 
 The app will be available at [http://localhost:5000](http://localhost:5000)
